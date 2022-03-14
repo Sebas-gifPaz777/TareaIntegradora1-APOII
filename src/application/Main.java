@@ -5,9 +5,12 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import controller.Cinema1Controller;
+import controller.Cinema2Controller;
 import controller.LoginController;
 import controller.MenuController;
 import controller.NewEventController;
+import controller.PreRoomController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.CreateEvent;
@@ -56,6 +59,7 @@ public class Main extends Application {
 			stage.show();
 			currentStage=stage;
 			login=new Login();
+			ce= new CreateEvent();
 			
 		}catch(IOException e){
 			e.printStackTrace();
@@ -106,21 +110,21 @@ public class Main extends Application {
 			root = (BorderPane)stage.getScene().getRoot();
 			root.setCenter(null);
 			root.setCenter(list1);
-			ce= new CreateEvent();
+			
 			
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void showRoom() {
+	public void showPreRoom() {
 		try {
 			BorderPane root;
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Menu.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/PreRoom.fxml"));
 			BorderPane list1= (BorderPane)loader.load();
 			
 			Stage stage = currentStage;
-			MenuController controller=loader.getController();
+			PreRoomController controller=loader.getController();
 			
 			controller.setMain(this);
 			
@@ -138,10 +142,52 @@ public class Main extends Application {
 	}
 	
 	public ArrayList<Room1> getRoom1() {
-		return ce.getRoom1();
+		ArrayList<Room1>gt=ce.getRoom1();
+		return gt; 
 	}
 	
 	public ArrayList<Room2> getRoom2(){
-		return ce.getRoom2();
+		ArrayList<Room2>gt=ce.getRoom2();
+		return gt; 
+	}
+
+	public void showCinema1() {
+		try {
+			BorderPane root;
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Cinema1.fxml"));
+			BorderPane list1= (BorderPane)loader.load();
+			
+			Stage stage = currentStage;
+			Cinema1Controller controller=loader.getController();
+			
+			controller.setMain(this);
+			
+			root = (BorderPane)stage.getScene().getRoot();
+			root.setCenter(null);
+			root.setCenter(list1);
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void showCinema2() {
+		try {
+			BorderPane root;
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Cinema2.fxml"));
+			BorderPane list1= (BorderPane)loader.load();
+			
+			Stage stage = currentStage;
+			Cinema2Controller controller=loader.getController();
+			
+			controller.setMain(this);
+			
+			root = (BorderPane)stage.getScene().getRoot();
+			root.setCenter(null);
+			root.setCenter(list1);
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

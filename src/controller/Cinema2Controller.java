@@ -1,5 +1,12 @@
 package controller;
 
-public class Cinema2Controller {
+import application.Main;
 
+public class Cinema2Controller {
+	
+	private Main main;
+	
+	public void setMain(Main main) {
+		this.main=main;
+	}
 }

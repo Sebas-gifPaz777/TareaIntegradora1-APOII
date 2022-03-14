@@ -25,7 +25,7 @@ public class MenuController {
 		});
 		
 		btBooking.setOnAction((ActionEvent b2) ->{
-			main.showRoom();
+			main.showPreRoom();
 		});
 		
 		/*btReport.setOnAction((ActionEvent b3) ->{

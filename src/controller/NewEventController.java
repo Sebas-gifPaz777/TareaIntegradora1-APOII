@@ -69,6 +69,8 @@ public class NewEventController {
 				alert.setContentText("Se ha agregado un filme a la programación");
 				alert.showAndWait();
 				
+				main.showMainView();
+				
 			}catch(EmptyElementsException | InterruptionOfHoursException e) {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error Dialog");
