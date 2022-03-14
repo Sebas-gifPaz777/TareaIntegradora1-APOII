@@ -37,8 +37,10 @@ public class LoginController {
 					alert.setContentText("Debe ingresar un usuario valido");				
 				else  
 					alert.setContentText("La contraseña es incorrecta");
+				alert.show();
 				
 			}
+		 
 	 }
 	
 	public void setMain(Main main) {
