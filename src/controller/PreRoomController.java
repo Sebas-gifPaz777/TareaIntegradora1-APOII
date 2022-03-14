@@ -46,4 +46,8 @@ public class PreRoomController {
 		this.main=main;
 	}
 	
+	@FXML
+	public void backScene() {
+		main.showMainView();
+	}
 }

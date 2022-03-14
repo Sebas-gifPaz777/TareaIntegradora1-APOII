@@ -90,5 +90,8 @@ public class NewEventController {
 		this.main=main;
 	}
 	
-	
+	@FXML
+	public void backScene() {
+		main.showMainView();
+	}
 }

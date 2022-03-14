@@ -28,9 +28,9 @@ public class MenuController {
 			main.showPreRoom();
 		});
 		
-		/*btReport.setOnAction((ActionEvent b3) ->{
+		btReport.setOnAction((ActionEvent b3) ->{
 			
-		});*/
+		});
 	}
 	
 	public void setMain(Main main) {

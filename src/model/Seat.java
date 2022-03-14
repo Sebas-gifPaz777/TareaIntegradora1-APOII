@@ -33,5 +33,8 @@ public class Seat {
 	public LocalDate getDate() {
 		return date;
 	}
+	public void setNameOccupant(String name) {
+		nameOccupant=name;
+	}
 	
 }

@@ -54,4 +54,11 @@ public class CreateEvent {
 		return room2;
 	}
 	
+	public void setRoom1(ArrayList<Room1>room1) {
+		this.room1=room1;
+	}
+	
+	public void setRoom2(ArrayList<Room2>room2) {
+		this.room2=room2;
+	}
 }

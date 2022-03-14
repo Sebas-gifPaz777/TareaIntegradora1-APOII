@@ -150,6 +150,14 @@ public class Main extends Application {
 		ArrayList<Room2>gt=ce.getRoom2();
 		return gt; 
 	}
+	
+	public void setRoom1m(ArrayList<Room1>room1) {
+		ce.setRoom1(room1);
+	}
+	
+	public void setRoom2m(ArrayList<Room2>room2) {
+		ce.setRoom2(room2);
+	}
 
 	public void showCinema1() {
 		try {

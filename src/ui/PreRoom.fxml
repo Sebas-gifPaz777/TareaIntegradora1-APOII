@@ -31,7 +31,12 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btNext" layoutX="101.0" layoutY="236.0" mnemonicParsing="false" text="Siguiente">
+            <Button fx:id="btNext" layoutX="169.0" layoutY="236.0" mnemonicParsing="false" text="Siguiente">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btNext1" layoutX="45.0" layoutY="236.0" mnemonicParsing="false" onAction="#backScene" text="Atras">
                <font>
                   <Font size="18.0" />
                </font>
