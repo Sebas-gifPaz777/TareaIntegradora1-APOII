@@ -36,4 +36,8 @@ public class MenuController {
 	public void setMain(Main main) {
 		this.main=main;
 	}
+	
+	public void printReport() {
+		
+	}
 }

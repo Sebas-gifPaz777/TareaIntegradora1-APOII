@@ -19,7 +19,7 @@ public class ReportInfo {
 			for(int j=0;j<r1.get(i).getArray().length;i++) {
 				System.out.println(r1.get(i).getArray()[j].getNameOccupant());
 			}
-			System.out.println();
+			System.out.println("\n");
 		}
 	}
 	
