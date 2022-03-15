@@ -17,4 +17,8 @@ private Seat[] seats;
 	public Seat[] getArray() {
 		return seats;
 	}
+	
+	public void setArray(Seat[]seats) {
+		this.seats=seats;
+	}
 }

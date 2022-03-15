@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="controller.Cinema2Controller">
    <center>
       <Pane prefHeight="500.0" prefWidth="610.0" BorderPane.alignment="CENTER">
          <children>
@@ -19,8 +19,8 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="tfId" layoutX="128.0" layoutY="162.0" />
-            <TextField fx:id="tfName" layoutX="128.0" layoutY="206.0" />
+            <TextField fx:id="tfId" layoutX="128.0" layoutY="162.0" promptText="ID del estudiante(numerico)" />
+            <TextField fx:id="tfName" layoutX="128.0" layoutY="206.0" promptText="Nombre de estudiante" />
             <ComboBox fx:id="cbFilms" layoutX="127.0" layoutY="295.0" prefWidth="150.0" />
             <Button layoutX="150.0" layoutY="360.0" mnemonicParsing="false" onAction="#searchSeats" prefHeight="40.0" prefWidth="105.0" text="Buscar">
                <font>
@@ -242,7 +242,7 @@
                   <Font size="24.0" />
                </font>
             </RadioButton>
-            <Button fx:id="btBooking" layoutX="388.0" layoutY="417.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="105.0" text="Reservar">
+            <Button layoutX="388.0" layoutY="417.0" mnemonicParsing="false" onAction="#btBooking" prefHeight="40.0" prefWidth="105.0" text="Reservar">
                <font>
                   <Font size="18.0" />
                </font>

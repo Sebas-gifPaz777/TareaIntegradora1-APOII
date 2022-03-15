@@ -18,4 +18,8 @@ public class Room1 {
 	public Seat[] getArray() {
 		return seats;
 	}
+	
+	public void setArray(Seat[]seats) {
+		this.seats=seats;
+	}
 }

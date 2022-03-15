@@ -24,7 +24,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="tfHour" layoutX="98.0" layoutY="137.0" prefHeight="25.0" prefWidth="50.0" />
+            <TextField fx:id="tfHour" layoutX="98.0" layoutY="137.0" prefHeight="25.0" prefWidth="50.0" promptText="Hora" />
             <Label layoutX="108.0" layoutY="111.0" text="Hora">
                <font>
                   <Font size="14.0" />

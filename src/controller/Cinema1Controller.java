@@ -9,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -20,6 +19,8 @@ import model.Seat;
 public class Cinema1Controller {
 	
 	private Main main;
+	
+	private int index;
 	
 	@FXML
 	private ComboBox<String> cbFilms;
@@ -33,61 +34,61 @@ public class Cinema1Controller {
 	@FXML
 	private TextField tfName;
 	
-	@FXML
-    private Button btBooking;
+
 	
-	private ArrayList<Room1>r1;
+	private ArrayList<Room1> r1;
 	
 	private String[]films;
 	
 	private RadioButton[] seats={a1,a2,a3,a4,a5,a6,a7,b1,b2,b3,b4,b5,b6,b7,c1,c2,c3,c4,c5,c6,c7,d1,d2,d3,d4,d5,d6,d7};
 	
-	private Seat[] rm;
+	private Seat[] rm=null;
 	
-	public void initialize() {
-		r1=main.getRoom1();
-		
-		films=new String[r1.size()];
-		
-		for(int i=0;i<films.length;i++) {
-			films[i]=r1.get(i).getArray()[0].getNameFilm();
+	@FXML
+    void btBooking(ActionEvent event) {
+		try {
+			if(tfId.getText().equals("") || tfName.getText().equals("")) {
+				throw new EmptyElementsException();
+			}
+			if(rm==null) {
+				throw new NullPointerException();
+			}
+			for(int i=0;i<seats.length;i++) {
+				if(seats[i].isSelected()) {
+					rm[i].setNameOccupant(tfName.getText());
+					seats[i].setDisable(true);
+				}
+			}
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setHeaderText("Registro");
+			alert.setContentText("El estudiante ha sido registrado");
+			alert.showAndWait();
+			tfName.setText("");
+			tfId.setText("");
+		}catch(EmptyElementsException | NullPointerException e1) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			if(e1 instanceof EmptyElementsException) {
+				alert.setHeaderText("Error en información ");
+				alert.setContentText("Complete todos los campos requeridos");
+			}
+			if(e1 instanceof NullPointerException) {
+				alert.setHeaderText("Error de Ejecución");
+				alert.setContentText("Por favor inicialmente, cargue un filme programado");
+			}
+			alert.showAndWait();	
 		}
 		
-		ObservableList<String> options = FXCollections.observableArrayList(films);
-		cbFilms.setItems(options);
+    }
+	public Cinema1Controller() {
+		initialize();
+	}
+	public void initialize() {
+		for (int i = 0; i < seats.length; i++) {
+			seats[i] = new RadioButton();
+		}
 		
-		btBooking.setOnAction((ActionEvent e) ->{
-			
-			try {
-				if(tfId.getText().equals("") || tfName.getText().equals(""))
-					throw new EmptyElementsException();
-				for(int i=0;i<seats.length;i++) {
-					if(seats[i].isSelected()) {
-						rm[i].setNameOccupant(tfName.getText());
-						seats[i].setDisable(true);
-					}
-				}
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("Information Dialog");
-				alert.setHeaderText("Registro");
-				alert.setContentText("El estudiante ha sido registrado");
-				tfName.setText("");
-				tfId.setText("");
-			}catch(EmptyElementsException | NullPointerException e1) {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error Dialog");
-				if(e1 instanceof EmptyElementsException) {
-					alert.setHeaderText("Error en información ");
-					alert.setContentText("Complete todos los campos requeridos");
-				}
-				if(e1 instanceof NullPointerException) {
-					alert.setHeaderText("Error de Ejecución");
-					alert.setContentText("Por favor inicialmente, cargue un filme programado");
-				}
-				alert.showAndWait();	
-			}
-			
-		});
 	}
 	
 	public void setMain(Main main) {
@@ -99,7 +100,7 @@ public class Cinema1Controller {
 		
 		try {
 			String op=cbFilms.getValue();
-			if(op.equals(""))
+			if(op==null)
 				throw new EmptyElementsException();
 			searchSeatsC(op);
 		}catch(EmptyElementsException e){
@@ -116,16 +117,38 @@ public class Cinema1Controller {
 		for(int i=0;i<r1.size();i++) {
 			if(r1.get(i).getArray()[0].getNameFilm().equals(op)) {
 				rm=r1.get(i).getArray();
+				index=i;
 				for(int j=0;j<rm.length;j++) {
 					if(!rm[j].getNameOccupant().equals(""))
 						seats[j].setDisable(true);
+					
 				}
 			}
 		}
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Information Dialog");
+		alert.setHeaderText("Carga del filme");
+		alert.setContentText("El filme ha sido cargado");
+		alert.showAndWait();
 	}
 	
 	@FXML
 	public void backScene() {
+		r1.get(index).setArray(rm);
+		main.setRoom1m(r1);
 		main.showMainView();
+	}
+	
+	public void chargeContein() {
+		r1=main.getRoom1();
+		index=0;
+		
+		films=new String[r1.size()];
+		for(int i=0;i<films.length;i++) {
+			films[i]=r1.get(i).getArray()[0].getNameFilm();
+		}
+		
+		ObservableList<String> options = FXCollections.observableArrayList(films);
+		cbFilms.setItems(options);
 	}
 }

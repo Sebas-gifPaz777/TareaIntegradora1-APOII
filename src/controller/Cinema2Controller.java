@@ -20,6 +20,8 @@ import model.Seat;
 public class Cinema2Controller {
 	
 private Main main;
+
+	private int index;
 	
 	@FXML
 	private ComboBox<String> cbFilms;
@@ -42,54 +44,15 @@ private Main main;
 	
 	private RadioButton[] seats={a1,a2,a3,a4,a5,a6,a7,b1,b2,b3,b4,b5,b6,b7,c1,c2,c3,c4,c5,c6,c7,d1,d2,d3,d4,d5,d6,d7,e1,e2,e3,e4,e5,e6,e7,f1,f2,f3,f4,f5,f6,f7};
 	
-	private Seat[] rm;
+	private Seat[] rm=null;
 	
+	public Cinema2Controller() {
+		initialize();
+	}
 	public void initialize() {
-		r2=main.getRoom2();
-		
-		films=new String[r2.size()];
-		
-		for(int i=0;i<films.length;i++) {
-			films[i]=r2.get(i).getArray()[0].getNameFilm();
+		for (int i = 0; i < seats.length; i++) {
+			seats[i] = new RadioButton();
 		}
-		
-		ObservableList<String> options = FXCollections.observableArrayList(films);
-		cbFilms.setItems(options);
-		
-		btBooking.setOnAction((ActionEvent e) ->{
-			
-			try {
-				if(tfId.getText().equals("") || tfName.getText().equals(""))
-					throw new EmptyElementsException();
-				for(int i=0;i<seats.length;i++) {
-					if(seats[i].isSelected()) {
-						rm[i].setNameOccupant(tfName.getText());
-						seats[i].setDisable(true);
-					}
-				}
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("Information Dialog");
-				alert.setHeaderText("Registro");
-				alert.setContentText("El estudiante ha sido registrado");
-				alert.showAndWait();
-				tfName.setText("");
-				tfId.setText("");
-				
-			}catch(EmptyElementsException | NullPointerException e1) {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error Dialog");
-				if(e1 instanceof EmptyElementsException) {
-					alert.setHeaderText("Error en información ");
-					alert.setContentText("Complete todos los campos requeridos");
-				}
-				if(e1 instanceof NullPointerException) {
-					alert.setHeaderText("Error de Ejecución");
-					alert.setContentText("Por favor inicialmente, cargue un filme programado");
-				}
-				alert.showAndWait();	
-			}
-			
-		});
 	}
 	
 	public void setMain(Main main) {
@@ -97,11 +60,47 @@ private Main main;
 	}
 	
 	@FXML
+    public void btBooking(ActionEvent event) {
+		try {
+			if(tfId.getText().equals("") || tfName.getText().equals(""))
+				throw new EmptyElementsException();
+			if(rm==null) {
+				throw new NullPointerException();
+			}
+			for(int i=0;i<seats.length;i++) {
+				if(seats[i].isSelected()) {
+					rm[i].setNameOccupant(tfName.getText());
+					seats[i].setDisable(true);
+				}
+			}
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setHeaderText("Registro");
+			alert.setContentText("El estudiante ha sido registrado");
+			alert.showAndWait();
+			tfName.setText("");
+			tfId.setText("");
+			
+		}catch(EmptyElementsException | NullPointerException e1) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			if(e1 instanceof EmptyElementsException) {
+				alert.setHeaderText("Error en información ");
+				alert.setContentText("Complete todos los campos requeridos");
+			}
+			if(e1 instanceof NullPointerException) {
+				alert.setHeaderText("Error de Ejecución");
+				alert.setContentText("Por favor inicialmente, cargue un filme programado");
+			}
+			alert.showAndWait();	
+		}
+    }
+	@FXML
 	public void searchSeats(ActionEvent event) {
 		
 		try {
 			String op=cbFilms.getValue();
-			if(op.equals(""))
+			if(op==null)
 				throw new EmptyElementsException();
 			searchSeatsC(op);
 		}catch(EmptyElementsException e){
@@ -118,16 +117,38 @@ private Main main;
 		for(int i=0;i<r2.size();i++) {
 			if(r2.get(i).getArray()[0].getNameFilm().equals(op)) {
 				rm=r2.get(i).getArray();
+				index=i;
 				for(int j=0;j<rm.length;j++) {
 					if(!rm[j].getNameOccupant().equals(""))
 						seats[j].setDisable(true);
 				}
 			}
 		}
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Information Dialog");
+		alert.setHeaderText("Carga del filme");
+		alert.setContentText("El filme ha sido cargado");
+		alert.showAndWait();
 	}
 	
 	@FXML
 	public void backScene() {
+		r2.get(index).setArray(rm);
+		main.setRoom2m(r2);
 		main.showMainView();
+	}
+	
+	public void chargeList() {
+		r2=main.getRoom2();
+		index=0;
+
+		films=new String[r2.size()];
+
+		for(int i=0;i<films.length;i++) {
+			films[i]=r2.get(i).getArray()[0].getNameFilm();
+		}
+
+		ObservableList<String> options = FXCollections.observableArrayList(films);
+		cbFilms.setItems(options);
 	}
 }

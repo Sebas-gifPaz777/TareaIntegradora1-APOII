@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="controller.MenuController">
+<BorderPane prefHeight="294.0" prefWidth="273.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
    <center>
-      <Pane prefHeight="400.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btRegist" layoutX="116.0" layoutY="108.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="153.0" text="Registrar Función ">
+            <Button fx:id="btBooking" mnemonicParsing="false" prefHeight="50.0" prefWidth="153.0" text="Reservar asiento">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btBooking" layoutX="116.0" layoutY="200.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="153.0" text="Reservar aciento">
+            <Separator prefHeight="26.0" prefWidth="263.0" visible="false" />
+            <Button fx:id="btReport" mnemonicParsing="false" prefHeight="50.0" prefWidth="153.0" text="Generar Reporte">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btReport" layoutX="116.0" layoutY="290.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="153.0" text="Generar Reporte">
+            <Separator prefHeight="31.0" prefWidth="263.0" visible="false" />
+            <Button fx:id="btRegist" mnemonicParsing="false" prefHeight="50.0" prefWidth="153.0" text="Registrar Función ">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
          </children>
-      </Pane>
+      </VBox>
    </center>
 </BorderPane>

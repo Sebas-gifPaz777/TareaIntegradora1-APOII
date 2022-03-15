@@ -17,6 +17,7 @@ import model.CreateEvent;
 import model.InterruptionOfHoursException;
 import model.Login;
 import model.PasswordNotMatchException;
+import model.ReportInfo;
 import model.Room1;
 import model.Room2;
 import model.UserNotFoundException;
@@ -29,6 +30,7 @@ public class Main extends Application {
 	private Login login;
 	private Stage currentStage;
 	private CreateEvent ce;
+	private ReportInfo ri;
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -84,8 +86,8 @@ public class Main extends Application {
 			root = (BorderPane)stage.getScene().getRoot();
 			root.setCenter(null);
 			root.setCenter(list1);
-			stage.setHeight(list1.getPrefHeight());
-			stage.setWidth(list1.getPrefWidth());	
+			//stage.setHeight(list1.getPrefHeight());
+			//stage.setWidth(list1.getPrefWidth());	
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -169,6 +171,7 @@ public class Main extends Application {
 			Cinema1Controller controller=loader.getController();
 			
 			controller.setMain(this);
+			controller.chargeContein();
 			
 			root = (BorderPane)stage.getScene().getRoot();
 			root.setCenter(null);
@@ -189,6 +192,7 @@ public class Main extends Application {
 			Cinema2Controller controller=loader.getController();
 			
 			controller.setMain(this);
+			controller.chargeList();
 			
 			root = (BorderPane)stage.getScene().getRoot();
 			root.setCenter(null);
@@ -197,5 +201,12 @@ public class Main extends Application {
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void showReport() {
+		ri= new ReportInfo();
+		ri.setMain(this);
+		ri.chargeList(getRoom1(), getRoom2());
+		ri.printReport();
 	}
 }
