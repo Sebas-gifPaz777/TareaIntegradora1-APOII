@@ -15,9 +15,16 @@ public class ReportInfo {
 	public void printReport() {
 		
 		for(int i=0; i<r1.size();i++) {
-			System.out.println(r1.get(i).getArray()[0].getNameFilm());
+			System.out.println(r1.get(i).getArray()[0].getNameFilm()+"-"+r1.get(i).getArray()[0].getDate()+"-"+"Sala Mini");
 			for(int j=0;j<r1.get(i).getArray().length;i++) {
 				System.out.println(r1.get(i).getArray()[j].getNameOccupant());
+			}
+			System.out.println("\n");
+		}
+		for(int i=0; i<r2.size();i++) {
+			System.out.println(r2.get(i).getArray()[0].getNameFilm()+"-"+r2.get(i).getArray()[0].getDate()+"-"+"Sala Media");
+			for(int j=0;j<r2.get(i).getArray().length;i++) {
+				System.out.println(r2.get(i).getArray()[j].getNameOccupant());
 			}
 			System.out.println("\n");
 		}
